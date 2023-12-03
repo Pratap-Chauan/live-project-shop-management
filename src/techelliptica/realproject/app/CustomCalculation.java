@@ -17,39 +17,61 @@ public class CustomCalculation {
 		itemObject.setTotalPrice(totalPrice);
 		allItems.add(itemObject);
 		calculateAllItemAmount();
-		
+	//	double totalPrice = calculateTotalItemAmount(itemPrice, ItemQuantity);
+	/*
+	 * double amount = 0.0; double amtreturn = getAmountReturnToCustomer(amount);
+	 * System.out.println(amtreturn);
+	 */	
 	}
-	
-	
-	
+		
 	
 /*	
  * #############################################################
  * User need to write Code below this block
  */
-
 	
 	
 	public static double totalPrice = 0.0d;
+	public static double amountReturn = 0.0d;
+	
 	public static double calculateTotalItemAmount(double itemPrice, int ItemQuantity) {
-		// TODO - Write Code below to calculate total Item Amount
 		
-		return 0.0d;
+		// TODO - Write Code below to calculate total Item Amount
+		double itemtotalprice = (double)(itemPrice*ItemQuantity);
+		totalPrice = totalPrice + itemtotalprice;
+		//double returnamount = (double)(totalPrice - CustomCalculation.getAmountReturnToCustomer(double amountGivenByCustomer));
+		 return itemPrice*ItemQuantity;
+		 
+		 
+		//return 0.0d;
+	
 	}
 	
 	
 	public static void calculateAllItemAmount() {
 		// TODO - Write Code to calculate Total Price
+	//	System.out.println(totalPrice);
+		
+		
 		
 	}
 	
-	public static double getAmountReturnToCustomer(double amountGivenByCustomer) {
+	public static double getAmountReturnToCustomer(double amountGivenByCustomer)
+	
+	{
 		// TODO - write code to calculate amount return from shopkeeper to customer
-		return 0.0d;
+		
+		
+		
+		double amountreturn = (double)(amountGivenByCustomer - totalPrice);
+		
+		return amountreturn;
 	}
 	
 	
-	public static int[][] getCoinReturnToCustomer(double returnAmount) {
+	public static int[][] getCoinReturnToCustomer(double returnAmount)
+	
+	{
 		int[][] returnCoin =new  int[11][2];
 		
 		// TODO - Write Code to calculate minimum Coin Return 
@@ -70,6 +92,23 @@ public class CustomCalculation {
 		returnCoin[9][0] = 1000;
 		returnCoin[10][0] = 2000;
 		
+		
+		while(returnAmount !=0) {
+		 for(int i=0; i<returnCoin.length; i++)
+		 {
+			 if(returnCoin[i][0]>returnAmount)
+			 {
+				 //System.out.println(returnCoin[i-1][1]);
+				 returnCoin[i-1][1] = returnCoin[i-1][1] +1;
+				// System.out.println(returnCoin[i-1][1]);
+				 returnAmount = returnAmount - returnCoin[i-1][0];
+				 break;
+			 }
+			 
+			 
+		 }
+			 
+		}
 		return returnCoin;
 	}
 	

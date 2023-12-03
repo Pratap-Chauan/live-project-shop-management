@@ -249,6 +249,41 @@ public class App extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
+    	double amountGivenByCustomer = Double.parseDouble(jTextField3.getText());
+    	//double totalamount = CustomCalculation.totalPrice;
+    	double amountreturn = CustomCalculation.getAmountReturnToCustomer(amountGivenByCustomer);
+    	jLabel10.setText(String.valueOf(amountreturn));
+    	
+    	
+    	int[][] returnCoinArray = CustomCalculation.getCoinReturnToCustomer(amountreturn);
+        
+    	String coinString= "";
+    	for(int i = 0 ; i < returnCoinArray.length ; i++) {
+    		if(returnCoinArray[i][1] > 0) {
+    			coinString  = coinString + ""+returnCoinArray[i][0] +" -> " + returnCoinArray[i][1]+"<BR/>";
+    		}
+    	}
+    	
+    	jLabel7.setText("<html>"+coinString+"</html>");
+    	
+    	
+		/*
+		 * if (amountGivenByCustomer>=totalamount) { double returnamount =
+		 * amountGivenByCustomer - totalamount;
+		 * jLabel10.setText(String.format("%.2f",returnamount)); }
+		 * 
+		 * else
+		 * 
+		 * { jLabel10.setText("insufficient Payment");
+		 * 
+		 * }
+		 */
+
+    		
+
+    	
+    		//System.out.println(returnamount);
+		
     }//GEN-LAST:event_jButton2ActionPerformed
 
     
@@ -260,8 +295,10 @@ public class App extends javax.swing.JFrame {
     	int i = 0;
     	for(Item item : allItems) {
     		ar[i][0] = item.getItemName();
-    		ar[i][1] = item.getItemPrice();
-    		ar[i][2] = item.getItemQuantity();
+    		//ar[i][1] = item.getItemPrice();
+    		ar[i][1] = item.getItemQuantity();
+    		//ar[i][2] = item.getItemQuantity();
+    		ar[i][2] = item.getItemPrice();
     		ar[i][3] = item.getTotalPrice();
     		i++;
     	}
